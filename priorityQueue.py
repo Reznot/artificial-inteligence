@@ -6,7 +6,7 @@ class PriorityQueue:
         self.elements = []
 
     def isEmpty(self):
-        return bool(len(self.elements == 0))
+        return bool(len(self.elements) == 0)
 
     def push(self, item, priority):
         heapq.heappush(self.elements, (priority, item))

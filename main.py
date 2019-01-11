@@ -25,4 +25,11 @@ class Astar:
         self.openSet.push(start_node, start_node.f_cost)
 
 
+        while not self.openSet.isEmpty() and not self.current_node == target_node:
+            self.current_node = self.openSet.pop()
+            self.closedSet.append(self.current_node)
+
+            #
+
+
 Astar(start, target, _grid)
