@@ -41,7 +41,7 @@ def pathfinding(Grid):
                 pygame.draw.rect(screen, color, [(Grid.rect_margin + Grid.rect_width) * column + Grid.rect_margin,
                                                  (Grid.rect_margin + Grid.rect_width) * row + Grid.rect_margin,
                                                  Grid.rect_width, Grid.rect_height])
-
+#TODO animowanie przechodzacej smieciarki i otwieranie tych obrazkow ze smieciami
         start_x = Grid.startX
         start_y = Grid.startY
 
