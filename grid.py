@@ -2,6 +2,7 @@ import pygame
 import numpy as np
 import random
 import math
+import time
 
 
 class Grid:
@@ -14,10 +15,12 @@ class Grid:
     WHITE = (255, 255, 255)
     GREEN = (0, 255, 0)
     BROWN = (165, 42, 42)
+    YELLOW = (255, 191, 0)
     RED = (255, 0, 0)
+    PURPLE = (191, 0, 255)
 
     def __init__(self, grid):
-        self.cells = []
+        self.table_nodes = []
         self.width = len(grid)
         self.height = len(grid)
 
@@ -26,24 +29,30 @@ class Grid:
         self.endX = self.width - 1
         self.endY = self.height - 1
 
-        # domki = (())
-
-        #for i in range(Grid.width):
-        #   for j in range(Grid.height):
-        #        if (i, j) in domki:
-        #            reachable = False
-        #        else:
-        #            reachable = True
-        #            Grid.n = random.randint(1, 3)
-        #            Grid.e = random.randint(1, 3)
-        #            Grid.w = random.randint(1, 3)
-        #            Grid.s = random.randint(1, 3)
-        #            Grid.cost = random.randint(1, 3)
-        #        Grid.cells.append((Node(i, j, reachable, n, e, w, s, cost)))
-
         self.grid = np.zeros(shape=(self.width, self.height))
+
+        for i in range(self.width):
+          for j in range(self.height):
+               if (i != 0 and j != 0) or (i != 19 and j != 19):
+                isHouse = random.randint(0,20)
+               if isHouse == 1:
+                   self.grid[i][j] = 2
+                   reachable = False
+
+               else:
+                   reachable = True
+               #     Grid.n = random.randint(1, 3)
+               #     Grid.e = random.randint(1, 3)
+               #     Grid.w = random.randint(1, 3)
+               #     Grid.s = random.randint(1, 3)
+               #     Grid.cost = random.randint(1, 3)
+               # Grid.cells.append((Node(i, j, reachable, n, e, w, s, cost)))
+               #
         # Start postion
         self.grid[0][0] = 1
+        # time.sleep(5)  testing
+        # self.grid[13][13] = 1
+
         self.grid[self.width - 1][self.height - 1] = 19
 
 
