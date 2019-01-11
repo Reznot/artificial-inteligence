@@ -34,7 +34,7 @@ class Grid:
         for i in range(self.width):
           for j in range(self.height):
                if (i != 0 and j != 0) or (i != 19 and j != 19):
-                isHouse = random.randint(0,15)
+                isHouse = random.randint(0,12)
                if isHouse == 1:
                    self.grid[i][j] = 2
                    reachable = False
@@ -76,16 +76,20 @@ class Node:
         #Node.visited = np.zeros(shape=(Grid.width, Grid.height), dtype=bool)
         # Position.Neighbors = [None,None,None,None]
 
-        def get_neighbors(Node):
-            neighbors = []
-            if Node.x < Grid.width - 1:
-                neighbors.append(Node.x + 1, Node.y)
-            if Node.x > 0:
-                neighbors.append(Node.x - 1, Node.y)
-            if Node.y < Grid.height - 1:
-                neighbors.append(Node.x, Node.y + 1)
-            if Node.y > 0:
-                neighbors.append(Node.x, Node.y - 1)
+        def get_neighbors(current_node, grid):
+            neighbors = dict()
+            #Go west
+            if current_node.x > 0:
+                neighbors['w'] = grid[current_node.x-1][current_node.y]
+            #Go north
+            if current_node.y > 0:
+                neighbors['n'] = grid[current_node.x][current_node.y-1]
+            #Go east
+            if current_node.x < 19:
+                neighbors['e'] = grid[current_node.x+1][current_node.y]
+            #Go south
+            if current_node.y < 19:
+                neighbors['s'] = grid[current_node.x][current_node.y+1]
             return neighbors
 
         def is_visited(Node):
@@ -96,8 +100,8 @@ class Node:
         def visit(Node):
             Node.visited[Node.x][Node.y] = True
 
-    def manhattan_distance(start, target):
-        return abs(start.x - target.x) + abs(start.y - target.y)
+    def manhattan_distance(self, target):
+        return abs(self.x - target.x) + abs(self.y - target.y)
 
     def set_start_node(self, target):
         self.g_cost = 0
