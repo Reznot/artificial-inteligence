@@ -54,8 +54,8 @@ def pathfinding(Grid):
     pygame.quit()
 
 
-# create new Grid object for testing
-input_grid = np.zeros(shape=(20, 20))
-Grid = make_grid(input_grid)
-
-pathfinding(Grid)
+# # create new Grid object for testing
+# input_grid = np.zeros(shape=(20, 20))
+# Grid = make_grid(input_grid)
+#
+# pathfinding(Grid)
