@@ -29,6 +29,7 @@ class Astar:
             self.current_node = self.openSet.pop()
             self.closedSet.append(self.current_node)
 
-            n = self.current_node.get_neighbors(self.A_grid)
+            neighbors = self.current_node.get_neighbors(self.A_grid)
+            print(neighbors['e'].x)
 
 Astar(start, target, _grid)
