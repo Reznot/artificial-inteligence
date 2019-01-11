@@ -41,13 +41,12 @@ class Grid:
 
                else:
                    reachable = True
-               #     Grid.n = random.randint(1, 3)
-               #     Grid.e = random.randint(1, 3)
-               #     Grid.w = random.randint(1, 3)
-               #     Grid.s = random.randint(1, 3)
-               #     Grid.cost = random.randint(1, 3)
-               # Grid.cells.append((Node(i, j, reachable, n, e, w, s, cost)))
-               #
+               n = random.randint(1, 3)
+               e = random.randint(1, 3)
+               w = random.randint(1, 3)
+               s = random.randint(1, 3)
+               self.table_nodes.append((Node(i, j, reachable, n, e, w, s)))
+
         # Start postion
         self.grid[0][0] = 1
         # time.sleep(5)  testing
@@ -96,8 +95,14 @@ class Node:
         def visit(Node):
             Node.visited[Node.x][Node.y] = True
 
+        def manhattan_distance(start, target):
+            return abs(start.x - target.x) + abs(start.y - target.y)
 
-        # controls the size of the grid
+        #def check_node(self, current_node, target_node, direction):
+
+
+
+# controls the size of the grid
 input_grid = np.zeros(shape=(20, 20))
 
 
