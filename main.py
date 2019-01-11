@@ -16,7 +16,7 @@ class Astar:
     def __init__(self, start_node, target_node, grid):
         self.start_node = start_node
         self.target_node = target_node
-        self.grid = grid
+        self.A_grid = grid
         self.openSet = priorityQueue.PriorityQueue()
         self.closedSet = []
         self.current_node = None
@@ -29,7 +29,6 @@ class Astar:
             self.current_node = self.openSet.pop()
             self.closedSet.append(self.current_node)
 
-            #
-
+            n = self.current_node.get_neighbors(self.A_grid)
 
 Astar(start, target, _grid)

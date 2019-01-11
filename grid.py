@@ -76,21 +76,6 @@ class Node:
         #Node.visited = np.zeros(shape=(Grid.width, Grid.height), dtype=bool)
         # Position.Neighbors = [None,None,None,None]
 
-        def get_neighbors(current_node, grid):
-            neighbors = dict()
-            #Go west
-            if current_node.x > 0:
-                neighbors['w'] = grid[current_node.x-1][current_node.y]
-            #Go north
-            if current_node.y > 0:
-                neighbors['n'] = grid[current_node.x][current_node.y-1]
-            #Go east
-            if current_node.x < 19:
-                neighbors['e'] = grid[current_node.x+1][current_node.y]
-            #Go south
-            if current_node.y < 19:
-                neighbors['s'] = grid[current_node.x][current_node.y+1]
-            return neighbors
 
         def is_visited(Node):
             if Node.visited[Node.x][Node.y] is True:
@@ -108,6 +93,23 @@ class Node:
         self.h_cost = self.manhattan_distance(target)
         self.f_cost = self.g_cost + self.h_cost
         self.parent = self
+
+    def get_neighbors(current_node, grid):
+        neighbors = dict()
+        #Go west
+        if current_node.x > 0:
+            neighbors['w'] = grid.table_nodes[current_node.x-1][current_node.y]
+        #Go north
+        if current_node.y > 0:
+            neighbors['n'] = grid.table_nodes[current_node.x][current_node.y-1]
+        #Go east
+        if current_node.x < 19:
+            neighbors['e'] = grid.table_nodes[current_node.x+1][current_node.y]
+        #Go south
+        if current_node.y < 19:
+            neighbors['s'] = grid.table_nodes[current_node.x][current_node.y+1]
+        return neighbors
+
 
         #def check_node(self, current_node, target_node, direction):
 

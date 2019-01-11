@@ -16,4 +16,4 @@ class PriorityQueue:
             print("Queue is empty")
             return None
         else:
-            return heapq.heappop(self.elements)
+            return heapq.heappop(self.elements)[1]
