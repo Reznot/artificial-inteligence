@@ -20,7 +20,7 @@ class Grid:
     PURPLE = (191, 0, 255)
 
     def __init__(self, grid):
-        self.table_nodes = []
+        self.table_nodes = [[0 for x in range(20)] for y in range(20)]
         self.width = len(grid)
         self.height = len(grid)
 
@@ -34,7 +34,7 @@ class Grid:
         for i in range(self.width):
           for j in range(self.height):
                if (i != 0 and j != 0) or (i != 19 and j != 19):
-                isHouse = random.randint(0,20)
+                isHouse = random.randint(0,15)
                if isHouse == 1:
                    self.grid[i][j] = 2
                    reachable = False
@@ -45,7 +45,8 @@ class Grid:
                e = random.randint(1, 3)
                w = random.randint(1, 3)
                s = random.randint(1, 3)
-               self.table_nodes.append((Node(i, j, reachable, n, e, w, s)))
+               #self.table_nodes.append((Node(i, j, reachable, n, e, w, s)))
+               self.table_nodes[i][j] = Node(i, j, reachable, n, e, w, s)
 
         # Start postion
         self.grid[0][0] = 1
@@ -95,8 +96,14 @@ class Node:
         def visit(Node):
             Node.visited[Node.x][Node.y] = True
 
-        def manhattan_distance(start, target):
-            return abs(start.x - target.x) + abs(start.y - target.y)
+    def manhattan_distance(start, target):
+        return abs(start.x - target.x) + abs(start.y - target.y)
+
+    def set_start_node(self, target):
+        self.g_cost = 0
+        self.h_cost = self.manhattan_distance(target)
+        self.f_cost = self.g_cost + self.h_cost
+        self.parent = self
 
         #def check_node(self, current_node, target_node, direction):
 
