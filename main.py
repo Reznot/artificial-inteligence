@@ -1,6 +1,7 @@
 import grid
 import numpy as np
 import pathfinding as PF
+import priorityQueue
 
 input_grid = np.zeros(shape=(20, 20))
 _grid = grid.Grid(input_grid)
@@ -12,12 +13,16 @@ target = _grid.table_nodes[19][19]
 start.set_start_node(target)
 
 class Astar:
-    def __init__(self, start_node, target_node):
-        self.start = start_node
-        self.target = target_node
+    def __init__(self, start_node, target_node, grid):
+        self.start_node = start_node
+        self.target_node = target_node
+        self.grid = grid
+        self.openSet = priorityQueue.PriorityQueue()
+        self.closedSet = []
+        self.current_node = None
+        self.checked = False
+
+        self.openSet.push(start_node, start_node.f_cost)
 
 
-    closedSet = []
-    current_node = None
-    checked = False
-
+Astar(start, target, _grid)
