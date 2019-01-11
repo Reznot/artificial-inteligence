@@ -36,6 +36,8 @@ def pathfinding(Grid):
                     color = Grid.GREEN
                 elif Grid.grid[row][column] == 19:
                     color = Grid.RED
+                elif Grid.grid[row][column] == 2:
+                    color = Grid.PURPLE
                 pygame.draw.rect(screen, color, [(Grid.rect_margin + Grid.rect_width) * column + Grid.rect_margin,
                                                  (Grid.rect_margin + Grid.rect_width) * row + Grid.rect_margin,
                                                  Grid.rect_width, Grid.rect_height])
