@@ -1,6 +1,7 @@
 import pygame
 import numpy as np
 import random
+import math
 
 
 class Grid:
@@ -16,14 +17,14 @@ class Grid:
     RED = (255, 0, 0)
 
     def __init__(self, grid):
-        Grid.cells = []
-        Grid.width = len(grid)
-        Grid.height = len(grid)
+        self.cells = []
+        self.width = len(grid)
+        self.height = len(grid)
 
-        Grid.startX = 0
-        Grid.startY = 0
-        Grid.endX = self.width - 1
-        Grid.endY = self.height - 1
+        self.startX = 0
+        self.startY = 0
+        self.endX = self.width - 1
+        self.endY = self.height - 1
 
         # domki = (())
 
@@ -40,25 +41,30 @@ class Grid:
         #            Grid.cost = random.randint(1, 3)
         #        Grid.cells.append((Node(i, j, reachable, n, e, w, s, cost)))
 
-        Grid.grid = np.zeros(shape=(self.width, self.height))
+        self.grid = np.zeros(shape=(self.width, self.height))
         # Start postion
-        Grid.grid[0][0] = 1
-        Grid.grid[self.width - 1][self.height - 1] = 19
+        self.grid[0][0] = 1
+        self.grid[self.width - 1][self.height - 1] = 19
 
 
 class Node:
-    def __init__(self, x, y, reachable, n, e, w, s, moveCost):
-        Node.reachable = reachable
-        Node.x = x
-        Node.y = y
+    def __init__(self, x, y, reachable, n, e, w, s):
+        self.reachable = reachable
+        self.x = x
+        self.y = y
         # costs of going in particular direction
-        Node.n = n
-        Node.e = e
-        Node.w = w
-        Node.s = s
-        # finalMoveCost = direction * penalty
-        Node.carMoveCost = moveCost
-        Node.visited = np.zeros(shape=(Grid.width, Grid.height), dtype=bool)
+        self.n = n
+        self.e = e
+        self.w = w
+        self.s = s
+        self.parent = None
+        # cost function for Astar; Initially are infinite
+        self.g_cost = math.inf
+        self.h_cost = math.inf
+        self.f = math.inf
+        #self.garbage TODO add garbage picture to every node
+
+        #Node.visited = np.zeros(shape=(Grid.width, Grid.height), dtype=bool)
         # Position.Neighbors = [None,None,None,None]
 
         def get_neighbors(Node):
@@ -90,5 +96,5 @@ def make_grid(input_grid):
     grid = Grid(input_grid)
     return grid
 
-
+#TODO wpierdol do grid od razu
 make_grid(input_grid)
