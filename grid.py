@@ -70,7 +70,7 @@ class Node:
         # cost function for Astar; Initially are infinite
         self.g_cost = math.inf
         self.h_cost = math.inf
-        self.f = math.inf
+        self.f_cost = math.inf
         #self.garbage TODO add garbage picture to every node
 
         #Node.visited = np.zeros(shape=(Grid.width, Grid.height), dtype=bool)
@@ -96,23 +96,38 @@ class Node:
 
     def get_neighbors(current_node, grid):
         neighbors = dict()
-        #Go west
+        # Go west
         if current_node.x > 0:
             neighbors['w'] = grid.table_nodes[current_node.x-1][current_node.y]
-        #Go north
+        # Go north
         if current_node.y > 0:
             neighbors['n'] = grid.table_nodes[current_node.x][current_node.y-1]
-        #Go east
+        # Go east
         if current_node.x < 19:
             neighbors['e'] = grid.table_nodes[current_node.x+1][current_node.y]
-        #Go south
+        # Go south
         if current_node.y < 19:
             neighbors['s'] = grid.table_nodes[current_node.x][current_node.y+1]
         return neighbors
 
+    def check_if_better(self, current_node, target_node, direction):
+        if direction == 'w':
+            g = current_node.g_cost + current_node.w
+        elif direction == 'n':
+            g = current_node.g_cost + current_node.n
+        elif direction == 'e':
+            g = current_node.g_cost + current_node.e
+        elif direction == 's':
+            g = current_node.g_cost + current_node.s
 
-        #def check_node(self, current_node, target_node, direction):
-
+        h = self.manhattan_distance(target_node)
+        if (g + h) <= current_node.f_cost:
+            self.g_cost = g
+            self.h_cost = h
+            self.f_cost = g + h
+            self.parent = current_node
+            return True
+        return False
 
 
 # controls the size of the grid
