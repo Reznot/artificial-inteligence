@@ -55,7 +55,7 @@ class Grid:
         # self.grid[13][13] = 1
 
         self.grid[self.width - 1][self.height - 1] = 19
-
+# TODO dodac domki i  miec liste tych domkow zeby dac do Astar
 
 class Node:
     def __init__(self, x, y, reachable, n, e, w, s):
