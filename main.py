@@ -20,21 +20,28 @@ def Astar(start_node, target_node, given_grid):
     open_set = priorityQueue.PriorityQueue()
     closed_set = []
     current_node = None
-    checked = False
+    is_better = False
 
-    open_set.push(start_node, start_node.f_cost)  # push start node into PQ
+    open_set.push(start_node)  # push start node into PQ
 
-    while not open_set.isEmpty() and not current_node == target_node:
+    while not open_set.isEmpty():  # and not current_node == target_node:
         current_node = open_set.pop()  # take node with lowest f_cost
-        closed_set.append(current_node)  # push this node to closed list as it's expanded
+        if current_node == target_node:
+            break
 
+        closed_set.append(current_node)  # push this node to closed list as it's expanded
         neighbors = current_node.get_neighbors(A_grid)
 
         for key in neighbors:
-            print(neighbors[key].x)
+            if neighbors[key] not in closed_set:
+                print(neighbors[key].x)
+                is_better = neighbors[key].check_if_better(current_node, target_node, key)
+                if is_better:
+                    open_set.push(neighbors[key])
 
             #TODO check_if_better
-
+    last = current_node
+    print(last.x, last.y)
 
 Astar(start, target, _grid)
 PF.pathfinding(_grid)
