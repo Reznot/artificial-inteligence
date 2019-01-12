@@ -21,6 +21,7 @@ def Astar(start_node, target_node, given_grid):
     closed_set = []
     current_node = None
     is_better = False
+    path = []
 
     open_set.push(start_node)  # push start node into PQ
 
@@ -34,7 +35,7 @@ def Astar(start_node, target_node, given_grid):
 
         for key in neighbors:
             if neighbors[key] not in closed_set:
-                print(neighbors[key].x)
+                # print(neighbors[key].x)
                 is_better = neighbors[key].check_if_better(current_node, target_node, key)
                 if is_better:
                     open_set.push(neighbors[key])
@@ -43,5 +44,15 @@ def Astar(start_node, target_node, given_grid):
     last = current_node
     print(last.x, last.y)
 
-Astar(start, target, _grid)
+    while current_node.parent != current_node:
+        path.insert(0, current_node)
+        current_node = current_node.parent
+
+    for node in path:
+        print(node.x, node.y)
+
+    return path
+
+
+astar_path = Astar(start, target, _grid)
 PF.pathfinding(_grid)
