@@ -5,7 +5,7 @@ from grid import Node
 from grid import make_grid
 
 
-def pathfinding(Grid):
+def pathfinding(Grid, path):
     pygame.init()
 
     # Set the width and height of the screen [width, height]
@@ -31,6 +31,11 @@ def pathfinding(Grid):
         for column in range(Grid.width):
             for row in range(Grid.height):
                 color = Grid.WHITE
+
+                # color the path
+                for node in path:
+                    if node.x + node.y != 38:
+                        Grid.grid[node.x][node.y] = 10
                 # set the start and end positions to green and red respectively
                 if Grid.grid[row][column] == 1:
                     color = Grid.GREEN
@@ -38,6 +43,8 @@ def pathfinding(Grid):
                     color = Grid.RED
                 elif Grid.grid[row][column] == 2:
                     color = Grid.PURPLE
+                elif Grid.grid[row][column] == 10:
+                    color = Grid.LIGHT_BLUE
                 pygame.draw.rect(screen, color, [(Grid.rect_margin + Grid.rect_width) * column + Grid.rect_margin,
                                                  (Grid.rect_margin + Grid.rect_width) * row + Grid.rect_margin,
                                                  Grid.rect_width, Grid.rect_height])
