@@ -3,6 +3,7 @@ import numpy as np
 from grid import Grid
 from grid import Node
 from grid import make_grid
+import time
 
 
 def pathfinding(Grid, path):
@@ -28,26 +29,33 @@ def pathfinding(Grid, path):
         screen.fill(Grid.BLACK)
 
         # Draw the initial grid
-        for column in range(Grid.width):
-            for row in range(Grid.height):
-                color = Grid.WHITE
+        for node in path:
+            time.sleep(0.005)
+            if node.x + node.y != 38:
+                Grid.grid[node.x][node.y] = 10
+            for column in range(Grid.width):
+                for row in range(Grid.height):
+                    color = Grid.WHITE
 
-                # color the path
-                for node in path:
-                    if node.x + node.y != 38:
-                        Grid.grid[node.x][node.y] = 10
-                # set the start and end positions to green and red respectively
-                if Grid.grid[row][column] == 1:
-                    color = Grid.GREEN
-                elif Grid.grid[row][column] == 19:
-                    color = Grid.RED
-                elif Grid.grid[row][column] == 2:
-                    color = Grid.PURPLE
-                elif Grid.grid[row][column] == 10:
-                    color = Grid.LIGHT_BLUE
-                pygame.draw.rect(screen, color, [(Grid.rect_margin + Grid.rect_width) * column + Grid.rect_margin,
-                                                 (Grid.rect_margin + Grid.rect_width) * row + Grid.rect_margin,
-                                                 Grid.rect_width, Grid.rect_height])
+                    # # color the path
+                    # for node in path:
+                    #     if node.x + node.y != 38:
+                    #         Grid.grid[node.x][node.y] = 10
+                    # set the start and end positions to green and red respectively
+                    if Grid.grid[row][column] == 1:
+                        color = Grid.GREEN
+                    elif Grid.grid[row][column] == 19:
+                        color = Grid.RED
+                    elif Grid.grid[row][column] == 2:
+                        color = Grid.PURPLE
+                    elif Grid.grid[row][column] == 10:
+                        color = Grid.LIGHT_BLUE
+                    pygame.draw.rect(screen, color, [(Grid.rect_margin + Grid.rect_width) * column + Grid.rect_margin,
+                                                     (Grid.rect_margin + Grid.rect_width) * row + Grid.rect_margin,
+                                                     Grid.rect_width, Grid.rect_height])
+                    pygame.display.update()
+
+
 #TODO animowanie przechodzacej smieciarki i otwieranie tych obrazkow ze smieciami
         start_x = Grid.startX
         start_y = Grid.startY
