@@ -41,10 +41,10 @@ class Grid:
 
                else:
                    reachable = True
-               n = random.randint(1, 3)
-               e = random.randint(1, 3)
-               w = random.randint(1, 3)
-               s = random.randint(1, 3)
+               n = random.randint(0, 1)
+               e = random.randint(0, 1)
+               w = random.randint(0, 1)
+               s = random.randint(0, 1)
                #self.table_nodes.append((Node(i, j, reachable, n, e, w, s)))
                self.table_nodes[i][j] = Node(i, j, reachable, n, e, w, s)
 
@@ -98,16 +98,20 @@ class Node:
         neighbors = dict()
         # Go west
         if current_node.x > 0:
-            neighbors['w'] = grid.table_nodes[current_node.x-1][current_node.y]
+            if grid.table_nodes[current_node.x-1][current_node.y].reachable:
+                neighbors['w'] = grid.table_nodes[current_node.x-1][current_node.y]  # TODO add if reachable
         # Go north
         if current_node.y > 0:
-            neighbors['n'] = grid.table_nodes[current_node.x][current_node.y-1]
+            if grid.table_nodes[current_node.x][current_node.y-1].reachable:
+                neighbors['n'] = grid.table_nodes[current_node.x][current_node.y-1]
         # Go east
         if current_node.x < 19:
-            neighbors['e'] = grid.table_nodes[current_node.x+1][current_node.y]
+            if grid.table_nodes[current_node.x+1][current_node.y].reachable:
+                neighbors['e'] = grid.table_nodes[current_node.x+1][current_node.y]
         # Go south
         if current_node.y < 19:
-            neighbors['s'] = grid.table_nodes[current_node.x][current_node.y+1]
+            if grid.table_nodes[current_node.x][current_node.y+1].reachable:
+                neighbors['s'] = grid.table_nodes[current_node.x][current_node.y+1]
         return neighbors
 
     def check_if_better(self, current_node, target_node, direction):
@@ -121,7 +125,7 @@ class Node:
             g = current_node.g_cost + current_node.s
 
         h = self.manhattan_distance(target_node)
-        if (g + h) <= current_node.f_cost:
+        if (g + h) <= int(current_node.f_cost):
             self.g_cost = g
             self.h_cost = h
             self.f_cost = g + h

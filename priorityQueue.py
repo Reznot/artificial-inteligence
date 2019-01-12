@@ -8,12 +8,26 @@ class PriorityQueue:
     def isEmpty(self):
         return bool(len(self.elements) == 0)
 
-    def push(self, item, priority):
-        heapq.heappush(self.elements, (priority, item))
+    def push(self, item):  # TODO potem to zmodyfikuj jeszcze
+        if self.isEmpty():
+            self.elements.append(item)
+        else:
+            i = 0
+            contains = False
 
-    def pop(self):#czy na pewno zwraca Node czy nie tuple/ TODO jezeli nie dziala to sam zaimplementuj push
+            while not contains and i < len(self.elements):
+                if item.f_cost < self.elements[i].f_cost:
+                    self.elements.insert(i, item)
+                    contains = True
+                else:
+                    i += 1
+            if not contains:
+                self.elements.append(item)
+        # heapq.heappush(self.elements, (priority, item))
+
+    def pop(self):  # czy na pewno zwraca Node czy nie tuple/ TODO jezeli nie dziala to sam zaimplementuj push
         if self.isEmpty():
             print("Queue is empty")
             return None
         else:
-            return heapq.heappop(self.elements)[1]
+            return self.elements.pop(0)         # heapq.heappop(self.elements)[1]
