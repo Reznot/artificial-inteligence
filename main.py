@@ -55,4 +55,4 @@ def Astar(start_node, target_node, given_grid):
 
 
 astar_path = Astar(start, target, _grid)
-PF.pathfinding(_grid)
+PF.pathfinding(_grid, astar_path)

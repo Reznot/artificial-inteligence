@@ -18,6 +18,7 @@ class Grid:
     YELLOW = (255, 191, 0)
     RED = (255, 0, 0)
     PURPLE = (191, 0, 255)
+    LIGHT_BLUE = (51, 204, 255)
 
     def __init__(self, grid):
         self.table_nodes = [[0 for x in range(20)] for y in range(20)]
@@ -34,7 +35,7 @@ class Grid:
         for i in range(self.width):
           for j in range(self.height):
                if (i != 0 and j != 0) or (i != 19 and j != 19):
-                isHouse = random.randint(0,12)
+                isHouse = random.randint(0, 9)
                if isHouse == 1:
                    self.grid[i][j] = 2
                    reachable = False
