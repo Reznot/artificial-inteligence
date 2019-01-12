@@ -30,7 +30,7 @@ def pathfinding(Grid, path):
 
         # Draw the initial grid
         for node in path:
-            time.sleep(0.005)
+            pygame.time.delay(150)
             if node.x + node.y != 38:
                 Grid.grid[node.x][node.y] = 10
             for column in range(Grid.width):
@@ -53,7 +53,7 @@ def pathfinding(Grid, path):
                     pygame.draw.rect(screen, color, [(Grid.rect_margin + Grid.rect_width) * column + Grid.rect_margin,
                                                      (Grid.rect_margin + Grid.rect_width) * row + Grid.rect_margin,
                                                      Grid.rect_width, Grid.rect_height])
-                    pygame.display.update()
+                    pygame.display.flip()
 
 
 #TODO animowanie przechodzacej smieciarki i otwieranie tych obrazkow ze smieciami

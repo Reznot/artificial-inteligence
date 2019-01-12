@@ -35,12 +35,10 @@ def Astar(start_node, target_node, given_grid):
 
         for key in neighbors:
             if neighbors[key] not in closed_set:
-                # print(neighbors[key].x)
                 is_better = neighbors[key].check_if_better(current_node, target_node, key)
                 if is_better:
                     open_set.push(neighbors[key])
 
-            #TODO check_if_better
     last = current_node
     print(last.x, last.y)
 
@@ -56,3 +54,7 @@ def Astar(start_node, target_node, given_grid):
 
 astar_path = Astar(start, target, _grid)
 PF.pathfinding(_grid, astar_path)
+
+
+# TODO losuj rodzaj materialu zbierany danego dnia;
+# TODO podawaj obrazki z node z path; sprawdzaj czy zwrocony material jest taki jak zbierany danego dnia; jak tak to zbierz i dodaj fote do "zebrany_smieci"
