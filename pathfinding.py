@@ -46,10 +46,12 @@ def pathfinding(Grid, path):
                         color = Grid.GREEN
                     elif Grid.grid[row][column] == 19:
                         color = Grid.RED
-                    elif Grid.grid[row][column] == 2:
+                    elif Grid.grid[row][column] == 2:  # Obstacle
                         color = Grid.PURPLE
-                    elif Grid.grid[row][column] == 10:
+                    elif Grid.grid[row][column] == 10:  # Path
                         color = Grid.LIGHT_BLUE
+                    elif Grid.grid[row][column] == 3:  # House
+                        color = Grid.YELLOW
                     pygame.draw.rect(screen, color, [(Grid.rect_margin + Grid.rect_width) * column + Grid.rect_margin,
                                                      (Grid.rect_margin + Grid.rect_width) * row + Grid.rect_margin,
                                                      Grid.rect_width, Grid.rect_height])
