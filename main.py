@@ -12,7 +12,6 @@ target = _grid.table_nodes[19][19]
 # set properties of a start node/ parent and costs functions
 start.set_start_node(target)
 
-houses_set = priorityQueue.PriorityQueue()
 
 def Astar(start_node, target_node, given_grid):
     start_node = start_node
@@ -53,9 +52,18 @@ def Astar(start_node, target_node, given_grid):
     return path
 
 
+def convert_list_to_pq(list):
+    pq = priorityQueue.PriorityQueue()
+    for item in list:
+        item.f_cost = item.manhattan_distance(target)
+        pq.push(item)
+    return pq
 
 
-astar_path = Astar(start, target, _grid)
+houses_set = convert_list_to_pq(_grid.houses)
+
+
+# astar_path = Astar(start, target, _grid)
 PF.pathfinding(_grid, astar_path)
 
 
