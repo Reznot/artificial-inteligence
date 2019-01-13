@@ -65,10 +65,9 @@ from_houses = convert_list_to_pq(_grid.houses)  # Houses which will be future st
 from_houses.push(start)
 _grid.houses.append(target)
 houses_set = convert_list_to_pq(_grid.houses)
-node_from = start
 astar_path = []
+node_from = from_houses.pop_last()
 while not houses_set.isEmpty():
-    # nodefrom = from_houses.pop_last()
     node_to = houses_set.pop_last()
     node_to_temp = _grid.table_nodes[node_to.x][node_to.y]
     astar_path += Astar(node_from, node_to_temp, _grid)
