@@ -29,17 +29,17 @@ class Grid:
         self.startY = 0
         self.endX = self.width - 1
         self.endY = self.height - 1
-
+        self.houses = []
         self.grid = np.zeros(shape=(self.width, self.height))
 
         for i in range(self.width):
           for j in range(self.height):
                if (i != 0 and j != 0) or (i != 19 and j != 19):
                 isHouse = random.randint(0, 9)
-               if isHouse == 1:
+                is_garbage_spot = random.randint(0, 20)
+               if isHouse == 1:  # Then it's obstacle
                    self.grid[i][j] = 2
                    reachable = False
-
                else:
                    reachable = True
                n = random.randint(0, 1)
