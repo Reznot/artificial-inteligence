@@ -42,13 +42,11 @@ def Astar(start_node, target_node, given_grid):
 
     last = current_node
     print(last.x, last.y)
-
+    if open_set.isEmpty():
+        print("pusty")
     while current_node.parent != current_node:
         path.insert(0, current_node)
         current_node = current_node.parent
-
-    for node in path:
-        print(node.x, node.y)
 
     return path
 
@@ -61,14 +59,12 @@ def convert_list_to_pq(list):
     return pq
 
 
-from_houses = convert_list_to_pq(_grid.houses)  # Houses which will be future start points
-from_houses.push(start)
 _grid.houses.append(target)
-houses_set = convert_list_to_pq(_grid.houses)
+houses_set = _grid.houses
 astar_path = []
 node_from = start
-while not houses_set.isEmpty():
-    node_to = houses_set.pop_last()
+while len(houses_set) != 0:  # not houses_set.isEmpty():  bo mialo byc lepiej; I CRY EVERYTIME
+    node_to = houses_set.pop(0)
     node_to_temp = _grid.table_nodes[node_to.x][node_to.y]
     astar_path += Astar(node_from, node_to_temp, _grid)
 
