@@ -31,8 +31,10 @@ def pathfinding(Grid, path):
         # Draw the initial grid
         for node in path:
             pygame.time.delay(150)
-            if node.x + node.y != 38:
+            if node.x + node.y != 38 and Grid.grid[node.x][node.y] != 3 and Grid.grid[node.x][node.y] != 5:
                 Grid.grid[node.x][node.y] = 10
+            if Grid.grid[node.x][node.y] == 3:
+                    Grid.grid[node.x][node.y] = 5
             for column in range(Grid.width):
                 for row in range(Grid.height):
                     color = Grid.WHITE
@@ -52,6 +54,8 @@ def pathfinding(Grid, path):
                         color = Grid.LIGHT_BLUE
                     elif Grid.grid[row][column] == 3:  # House
                         color = Grid.YELLOW
+                    elif Grid.grid[row][column] == 5:
+                        color = Grid.PINK
                     pygame.draw.rect(screen, color, [(Grid.rect_margin + Grid.rect_width) * column + Grid.rect_margin,
                                                      (Grid.rect_margin + Grid.rect_width) * row + Grid.rect_margin,
                                                      Grid.rect_width, Grid.rect_height])
