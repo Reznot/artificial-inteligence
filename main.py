@@ -2,6 +2,7 @@ import grid
 import numpy as np
 import pathfinding as PF
 import priorityQueue
+import math
 
 # initialize grid
 input_grid = np.zeros(shape=(20, 20))
@@ -60,7 +61,19 @@ def convert_list_to_pq(list):
     return pq
 
 
+from_houses = convert_list_to_pq(_grid.houses)  # Houses which will be future start points
+from_houses.push(start)
+_grid.houses.append(target)
 houses_set = convert_list_to_pq(_grid.houses)
+node_from = start
+astar_path = []
+while not houses_set.isEmpty():
+    # nodefrom = from_houses.pop_last()
+    node_to = houses_set.pop_last()
+    node_to_temp = _grid.table_nodes[node_to.x][node_to.y]
+    astar_path += Astar(node_from, node_to_temp, _grid)
+    # node_to_temp.f_cost = math.inf
+    # node_from = node_to_temp.set_start_node(target)
 
 
 # astar_path = Astar(start, target, _grid)

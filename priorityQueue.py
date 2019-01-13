@@ -37,4 +37,4 @@ class PriorityQueue:
             print("Queue is empty")
             return None
         else:
-            return self.elements.pop(len(self.elements - 1))         # heapq.heappop(self.elements)[1]
+            return self.elements.pop(len(self.elements) - 1)      # heapq.heappop(self.elements)[1]
