@@ -3,6 +3,7 @@ import numpy as np
 import random
 import math
 import time
+import priorityQueue
 
 
 class Grid:
@@ -36,7 +37,7 @@ class Grid:
           for j in range(self.height):
                if (i != 0 and j != 0) or (i != 19 and j != 19):
                 isHouse = random.randint(0, 9)
-                is_garbage_spot = random.randint(0, 20)
+                is_garbage_spot = random.randint(0, 12)
                if isHouse == 1:  # Then it's obstacle
                    self.grid[i][j] = 2
                    reachable = False
@@ -47,7 +48,12 @@ class Grid:
                w = random.randint(0, 1)
                s = random.randint(0, 1)
                #self.table_nodes.append((Node(i, j, reachable, n, e, w, s)))
-               self.table_nodes[i][j] = Node(i, j, reachable, n, e, w, s)
+               if is_garbage_spot == 1 and isHouse != 1 and i > 5 and j > 5 and i < 18 and j < 18:
+                   self.grid[i][j] = 3
+                   self.table_nodes[i][j] = Node(i, j, reachable, n, e, w, s)
+                   self.houses.append(self.table_nodes[i][j])
+               else:
+                   self.table_nodes[i][j] = Node(i, j, reachable, n, e, w, s)
 
         # Start postion
         self.grid[0][0] = 1
