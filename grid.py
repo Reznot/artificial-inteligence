@@ -36,7 +36,7 @@ class Grid:
         for i in range(self.width):
           for j in range(self.height):
                if (i != 0 and j != 0) or (i != 19 and j != 19):
-                isHouse = random.randint(0, 9)
+                isHouse = random.randint(0, 14)
                 is_garbage_spot = random.randint(0, 12)
                if isHouse == 1:  # Then it's obstacle
                    self.grid[i][j] = 2

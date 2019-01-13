@@ -25,9 +25,16 @@ class PriorityQueue:
                 self.elements.append(item)
         # heapq.heappush(self.elements, (priority, item))
 
-    def pop(self):  # czy na pewno zwraca Node czy nie tuple/ TODO jezeli nie dziala to sam zaimplementuj push
+    def pop(self):  # czy na pewno zwraca Node czy nie tuple/
         if self.isEmpty():
             print("Queue is empty")
             return None
         else:
             return self.elements.pop(0)         # heapq.heappop(self.elements)[1]
+
+    def pop_last(self):
+        if self.isEmpty():
+            print("Queue is empty")
+            return None
+        else:
+            return self.elements.pop(len(self.elements - 1))         # heapq.heappop(self.elements)[1]

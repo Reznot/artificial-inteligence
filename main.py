@@ -12,6 +12,7 @@ target = _grid.table_nodes[19][19]
 # set properties of a start node/ parent and costs functions
 start.set_start_node(target)
 
+houses_set = priorityQueue.PriorityQueue()
 
 def Astar(start_node, target_node, given_grid):
     start_node = start_node
@@ -50,6 +51,8 @@ def Astar(start_node, target_node, given_grid):
         print(node.x, node.y)
 
     return path
+
+
 
 
 astar_path = Astar(start, target, _grid)
