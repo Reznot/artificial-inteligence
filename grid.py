@@ -20,6 +20,7 @@ class Grid:
     RED = (255, 0, 0)
     PURPLE = (191, 0, 255)
     LIGHT_BLUE = (51, 204, 255)
+    PINK = (255, 0, 255)
 
     def __init__(self, grid):
         self.table_nodes = [[0 for x in range(20)] for y in range(20)]
