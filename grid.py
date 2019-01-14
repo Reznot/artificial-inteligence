@@ -21,6 +21,7 @@ class Grid:
     PURPLE = (191, 0, 255)
     LIGHT_BLUE = (51, 204, 255)
     PINK = (255, 0, 255)
+    ORANGE = (255, 153, 0)
 
     def __init__(self, grid):
         self.table_nodes = [[0 for x in range(20)] for y in range(20)]
@@ -44,10 +45,10 @@ class Grid:
                    reachable = False
                else:
                    reachable = True
-               n = random.randint(0, 1)
-               e = random.randint(0, 1)
-               w = random.randint(0, 1)
-               s = random.randint(0, 1)
+               n = random.uniform(1, 1.2)  # Mozna dopracowac bo jak wszystkie maja koszt jeden cos nie gra
+               e = random.uniform(1, 1.2)
+               w = random.uniform(1, 1.2)
+               s = random.uniform(1, 1.2)
                #self.table_nodes.append((Node(i, j, reachable, n, e, w, s)))
                if is_garbage_spot == 1 and isHouse != 1 and i > 5 and j > 5 and i < 18 and j < 18:
                    self.grid[i][j] = 3
@@ -133,7 +134,7 @@ class Node:
             g = current_node.g_cost + current_node.s
 
         h = self.manhattan_distance(target_node)
-        if (g + h) <= int(current_node.f_cost):
+        if 1 == 1:#(g + h) <= int(current_node.f_cost): #TODO jest chyba dobrze
             self.g_cost = g
             self.h_cost = h
             self.f_cost = g + h

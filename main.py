@@ -68,7 +68,7 @@ while len(houses_set) != 0:  # not houses_set.isEmpty():  bo mialo byc lepiej; I
     node_to_temp = _grid.table_nodes[node_to.x][node_to.y]
     astar_path += Astar(node_from, node_to_temp, _grid)
 
-    node_to_temp.h_cost = node_to_temp.manhattan_distance(target)  #TODO tutaj cos nie tak
+    node_to_temp.h_cost = node_to_temp.manhattan_distance(target)
     node_to_temp.g_cost = 0
     node_to_temp.f_cost = node_to_temp.g_cost + node_to_temp.h_cost
     node_to_temp.parent = node_to_temp

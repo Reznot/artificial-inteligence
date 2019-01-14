@@ -12,7 +12,7 @@ def pathfinding(Grid, path):
     # Set the width and height of the screen [width, height]
     size = (510, 510)
     screen = pygame.display.set_mode(size)
-    pygame.display.set_caption("Pathfinding")
+    pygame.display.set_caption("TESLA MODEL G: GARBAGE TRUCK")
 
     # Loop until the user clicks the close button.
     done = False
@@ -56,6 +56,8 @@ def pathfinding(Grid, path):
                         color = Grid.YELLOW
                     elif Grid.grid[row][column] == 5:
                         color = Grid.PINK
+                    elif Grid.grid[row][column] == 15:
+                        color = Grid.ORANGE
                     pygame.draw.rect(screen, color, [(Grid.rect_margin + Grid.rect_width) * column + Grid.rect_margin,
                                                      (Grid.rect_margin + Grid.rect_width) * row + Grid.rect_margin,
                                                      Grid.rect_width, Grid.rect_height])
