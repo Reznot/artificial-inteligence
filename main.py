@@ -91,7 +91,7 @@ while len(houses_set) != 0:  # not houses_set.isEmpty():  bo mialo byc lepiej; I
 day = random.choice(list(collection_schedule))
 
 # Classify garbage and collect it
-print("Day of the week: {}, collecting {}".format(day, *collection_schedule[day]))
+print("Day of the week: {}, collecting {}".format(day, collection_schedule[day]))
 print("List of classifications for garbage: ")
 for house in temp_houses_set:
     classification = IC.read_model(house.garbage)
