@@ -54,7 +54,7 @@ def pathfinding(Grid, path):
                         color = Grid.LIGHT_BLUE
                     elif Grid.grid[row][column] == 3:  # House
                         color = Grid.YELLOW
-                    elif Grid.grid[row][column] == 5:
+                    elif Grid.grid[row][column] == 5:  # Visited House
                         color = Grid.PINK
                     elif Grid.grid[row][column] == 15:
                         color = Grid.ORANGE

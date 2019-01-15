@@ -35,6 +35,10 @@ class Grid:
         self.houses = []
         self.grid = np.zeros(shape=(self.width, self.height))
 
+        # List of garbage pic filenames
+        with open("pliki_smieci.txt") as f:
+            garbage_list = f.read().splitlines()
+
         for i in range(self.width):
           for j in range(self.height):
                if (i != 0 and j != 0) or (i != 19 and j != 19):
@@ -49,13 +53,15 @@ class Grid:
                e = random.uniform(1, 1.2)
                w = random.uniform(1, 1.2)
                s = random.uniform(1, 1.2)
+               garbage = random.choice(garbage_list)
+
                #self.table_nodes.append((Node(i, j, reachable, n, e, w, s)))
                if is_garbage_spot == 1 and isHouse != 1 and i > 5 and j > 5 and i < 18 and j < 18:
                    self.grid[i][j] = 3
-                   self.table_nodes[i][j] = Node(i, j, reachable, n, e, w, s)
+                   self.table_nodes[i][j] = Node(i, j, reachable, n, e, w, s, garbage)
                    self.houses.append(self.table_nodes[i][j])
                else:
-                   self.table_nodes[i][j] = Node(i, j, reachable, n, e, w, s)
+                   self.table_nodes[i][j] = Node(i, j, reachable, n, e, w, s, garbage)
 
         # Start postion
         self.grid[0][0] = 1
@@ -66,7 +72,7 @@ class Grid:
 # TODO dodac domki i  miec liste tych domkow zeby dac do Astar
 
 class Node:
-    def __init__(self, x, y, reachable, n, e, w, s):
+    def __init__(self, x, y, reachable, n, e, w, s, garbage):
         self.reachable = reachable
         self.x = x
         self.y = y
@@ -80,7 +86,7 @@ class Node:
         self.g_cost = math.inf
         self.h_cost = math.inf
         self.f_cost = math.inf
-        #self.garbage TODO add garbage picture to every node
+        self.garbage = garbage
 
         #Node.visited = np.zeros(shape=(Grid.width, Grid.height), dtype=bool)
         # Position.Neighbors = [None,None,None,None]
