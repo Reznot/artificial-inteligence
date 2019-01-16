@@ -23,6 +23,7 @@ class Grid:
     PINK = (255, 0, 255)
     ORANGE = (255, 153, 0)
     BLUE = (0, 0, 255)
+    CHERRY = (204, 0, 0)
 
     def __init__(self, grid):
         self.table_nodes = [[0 for x in range(20)] for y in range(20)]
@@ -44,7 +45,7 @@ class Grid:
           for j in range(self.height):
                if (i != 0 and j != 0) or (i != 19 and j != 19):
                 isHouse = random.randint(0, 14)
-                is_garbage_spot = random.randint(0, 12)
+                is_garbage_spot = random.randint(0, 6)
                if isHouse == 1:  # Then it's obstacle
                    self.grid[i][j] = 2
                    reachable = False
@@ -57,7 +58,7 @@ class Grid:
                garbage = random.choice(garbage_list)
 
                #self.table_nodes.append((Node(i, j, reachable, n, e, w, s)))
-               if is_garbage_spot == 1 and isHouse != 1 and i > 5 and j > 5 and i < 18 and j < 18:
+               if is_garbage_spot == 1 and isHouse != 1 and i > 3 and j > 3 and i < 18 and j < 18:
                    self.grid[i][j] = 3
                    self.table_nodes[i][j] = Node(i, j, reachable, n, e, w, s, garbage)
                    self.houses.append(self.table_nodes[i][j])

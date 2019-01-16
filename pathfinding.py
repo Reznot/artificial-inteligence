@@ -29,10 +29,13 @@ def pathfinding(Grid, path):
         screen.fill(Grid.BLACK)
 
         # Draw the initial grid
+        previous_node = path[0]
         for node in path:
             pygame.time.delay(150)
             if node.x + node.y != 38 and Grid.grid[node.x][node.y] != 3 and Grid.grid[node.x][node.y] != 5 and Grid.grid[node.x][node.y] != 99:
-                Grid.grid[node.x][node.y] = 10  #  Truck  (previously 10 for light blue
+                Grid.grid[node.x][node.y] = 100  #  Truck  (previously 10 for light blue
+                Grid.grid[previous_node.x][previous_node.y] = 10
+                previous_node = node
             if Grid.grid[node.x][node.y] == 3:
                     Grid.grid[node.x][node.y] = 5
             for column in range(Grid.width):
@@ -61,7 +64,7 @@ def pathfinding(Grid, path):
                     elif Grid.grid[row][column] == 99:
                         color = Grid.BLUE
                     elif Grid.grid[row][column] == 100:
-                        color = Grid.BLACK
+                        color = Grid.CHERRY
                     pygame.draw.rect(screen, color, [(Grid.rect_margin + Grid.rect_width) * column + Grid.rect_margin,
                                                      (Grid.rect_margin + Grid.rect_width) * row + Grid.rect_margin,
                                                      Grid.rect_width, Grid.rect_height])
