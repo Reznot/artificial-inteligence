@@ -22,6 +22,7 @@ class Grid:
     LIGHT_BLUE = (51, 204, 255)
     PINK = (255, 0, 255)
     ORANGE = (255, 153, 0)
+    BLUE = (0, 0, 255)
 
     def __init__(self, grid):
         self.table_nodes = [[0 for x in range(20)] for y in range(20)]
@@ -67,7 +68,7 @@ class Grid:
         self.grid[0][0] = 1
         # time.sleep(5)  testing
         # self.grid[13][13] = 1
-
+        self.grid[10][19] = 99
         self.grid[self.width - 1][self.height - 1] = 19
 # TODO dodac domki i  miec liste tych domkow zeby dac do Astar
 
