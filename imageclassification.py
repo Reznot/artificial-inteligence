@@ -24,6 +24,9 @@ import time
 import numpy as np
 import tensorflow as tf
 
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 def load_graph(model_file):
   graph = tf.Graph()
   graph_def = tf.GraphDef()
@@ -69,13 +72,13 @@ def load_labels(label_file):
 
 def read_model(filename):
   file_name = "imagestotest/"+filename
-  model_file = "retrained_graph.pb"
+  model_file = "retrained_graph935proc.pb"
   label_file = "retrained_labels.txt"
-  input_height = 224
-  input_width = 224
+  input_height = 299
+  input_width = 299
   input_mean = 128
   input_std = 128
-  input_layer = "input"
+  input_layer = "Mul"
   output_layer = "final_result"
 
   graph = load_graph(model_file)
